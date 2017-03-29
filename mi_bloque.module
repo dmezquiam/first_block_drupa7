@@ -1,0 +1,84 @@
+<?php
+
+/*
+ * hook_block_info()
+ * Se pueden declarar uno o varios bloques.
+ * Se establece su configuracion inicial.
+ */
+
+  
+function mi_bloque_block_info(){
+    
+    
+        //Dando de alta un bloque en el area de administracion de bloques.
+	$blocks['welcome'] = array(
+	'info' => t('Bloque de prueba'), 
+	'cache' => DRUPAL_NO_CACHE,
+	'status' => 1, 
+	'region' => 'sidebar_first');
+	return $blocks;
+
+        
+        //Dando de alta un bloque en el area de administracion de bloques.
+       /* $blocks['otro'] = array(
+	'info' => t('Otro bloque de prueba'), 
+	'cache' => DRUPAL_NO_CACHE,
+	'status' => 1, 
+	'region' => 'sidebar_second');*/
+        
+	return $blocks;
+}
+
+
+/*
+ * 
+ * hook_block_configure($delta = '')
+ * Podemos añadir opciones de configuración específicas 
+ * para el bloque. En esta función implementamos el formulario 
+ * con los nuevos campos que se añadirán en el area de configuración del bloque.  
+ */
+function mi_bloque_block_configure($id){
+	
+	
+}
+
+/*
+ * hook_block_save($delta = '', $edit = array()) 
+ * Se guarda la configuración del bloque según 
+ * el formulario implementado en hook_block_configure(). 
+ */
+function mi_bloque_block_save($id){
+	
+	
+}
+
+/*
+ * hook_block_view($delta = '')
+ * Se crea el contenido del bloque
+ */
+function mi_bloque_block_view($id){
+    
+        drupal_add_library('system', 'ui.accordion'); 
+        drupal_add_js(drupal_get_path('module', 'mi_bloque') . '/jquery_forcontu_example1.js');  
+	$block = array();
+	switch($id)
+	{ 
+		case 'welcome':
+		$block['subject'] = t('Bloque de prueba');
+		$block['content'] =  '<div id="accordion">   
+                    <h3><a href="#">rtjrtj</a></h3>   <div>     <p>   
+                  rtjrtjrtjryjrtjrjrjrjrjrjrtjrtjrtjrtjrtjrtj.                  
+                    </p>   </div>   <h3><a href="#">rtjrtjrtj</a></h3>   <div>  
+                    <p>     rtjrtjrtjrtjtrjtrjrtjrtjtrjrtjrtjrtjrtj.      
+                    </p>   </div>   <h3><a href="#">Srtjtrjr</a></h3>   <div>    
+                    <p>     rtjrtjrtjryjrtjrjrjrjrjrjrtjrtjrtjrtjrtjrtj.     </p>   </div> 
+                    </div>'; 
+		break;
+            
+                /*case 'otro':
+		$block['subject'] = t('Otro bloque de prueba');
+		$block['content'] = t('Aqui va el contenido');
+		break;*/
+	}
+	return $block;
+}

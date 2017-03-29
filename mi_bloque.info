@@ -1,0 +1,6 @@
+name = Mi bloque
+description = "Mi nuevo bloque"
+core = 7.x
+files[] = mi_bloque.module
+package = Mis modulos
+
